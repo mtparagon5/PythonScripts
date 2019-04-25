@@ -26,7 +26,8 @@ def CopyFilesToDir(rootdir, dir_to_copy_to, subdirs_to_ignore, dirs_to_loop_thro
                         # subdirs to ignore
                         if any(_sdir in subdir for _sdir in subdirs_to_ignore):
                             continue
-                        copy2(os.path.join(subdir, file), dir_to_copy_to)
-                        files_copied.append(file)
+                        if file not in files_copied:
+                            copy2(os.path.join(subdir, file), dir_to_copy_to)
+                            files_copied.append(file)
 
     return files_copied
